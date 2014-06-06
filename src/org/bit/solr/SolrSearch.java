@@ -1,7 +1,5 @@
 package org.bit.solr;
 
-import java.util.List;
-
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.impl.HttpSolrServer;
@@ -41,13 +39,14 @@ public class SolrSearch {
 	public static void main(String[] args) throws SolrServerException {
 		SolrSearch solrSearch = new SolrSearch();
 		SolrQuery query = new SolrQuery();
-	    query.setQuery("product_name:304 不锈钢 管 管件");
+	    query.setQuery("304不锈钢管管件");
 	    query.setStart(0);
-	    query.setRows(10000);
+	    query.setRows(100);
 	    QueryResponse rsp = solrServer.query(query);
+	    
 	    SolrDocumentList resultDocs = rsp.getResults();
 	    for (SolrDocument doc : resultDocs) {
-			System.out.println(doc.getFieldValue("id") + "\t" + doc.getFieldValue("company_id") + "\t" + doc.getFieldValue("product_name"));
+			System.out.println(doc.getFieldValue("id") + "\t" + doc.getFieldValue("exactmatch_name") + "\t" + doc.getFieldValue("product_name"));
 		}
 	}
 }

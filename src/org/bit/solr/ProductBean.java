@@ -6,19 +6,23 @@ public class ProductBean {
 	@Field
 	private String id;
 	@Field
-	private String company_id;
+	private Long company_id;
 	@Field
 	private String product_name;
+	@Field
+	private Long _version_;
+	@Field
+	private String exactmatch_name;
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getCompany_id() {
+	public Long getCompany_id() {
 		return company_id;
 	}
-	public void setCompany_id(String company_id) {
+	public void setCompany_id(Long company_id) {
 		this.company_id = company_id;
 	}
 	public String getProduct_name() {
@@ -27,11 +31,35 @@ public class ProductBean {
 	public void setProduct_name(String product_name) {
 		this.product_name = product_name;
 	}
-	public ProductBean(String id, String company_id, String product_name) {
+	public Long get_version_() {
+		return _version_;
+	}
+	public void set_version_(Long _version_) {
+		this._version_ = _version_;
+	}
+	public String getExactmatch_name() {
+		return exactmatch_name;
+	}
+	public void setExactmatch_name(String exactmatch_name) {
+		this.exactmatch_name = exactmatch_name;
+	}
+	public ProductBean(String id, Long company_id, String product_name,
+			Long _version_, String exactmatch_name) {
 		super();
 		this.id = id;
 		this.company_id = company_id;
 		this.product_name = product_name;
+		this._version_ = _version_;
+		this.exactmatch_name = exactmatch_name;
 	}
 	
+	public ProductBean(Long company_id, String id, String exactmatch_name, String product_name,
+			Long _version_) {
+		super();
+		this.id = id;
+		this.company_id = company_id;
+		this.product_name = product_name;
+		this._version_ = _version_;
+		this.exactmatch_name = exactmatch_name;
+	}
 }
