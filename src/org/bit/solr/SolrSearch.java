@@ -46,7 +46,7 @@ public class SolrSearch {
 	    
 	    SolrDocumentList resultDocs = rsp.getResults();
 	    for (SolrDocument doc : resultDocs) {
-			System.out.println(doc.getFieldValue("id") + "\t" + doc.getFieldValue("exactmatch_name") + "\t" + doc.getFieldValue("product_name"));
+			System.out.println(doc.getFieldValue("id") + "\t" + doc.getFieldValue("product_name"));
 		}
 	}
 }
