@@ -1,7 +1,6 @@
 package org.bit.myscore;
 
 import java.io.IOException;
-
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.function.CustomScoreQuery;
@@ -18,6 +17,6 @@ public class GldScoreQuery extends CustomScoreQuery {
     protected GldScoreProvider getCustomScoreProvider(IndexReader reader)  
             throws IOException {  
 //      return super.getCustomScoreProvider(reader);  
-        return new GldScoreProvider(reader, keyword);  
+        return new GldScoreProvider(reader, keyword);
     }  
 }

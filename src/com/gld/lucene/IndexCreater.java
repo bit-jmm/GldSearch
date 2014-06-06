@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -110,10 +111,10 @@ public class IndexCreater {
 					java.lang.reflect.Field[] fields = product.getClass()
 							.getDeclaredFields();
 					for (java.lang.reflect.Field field : fields) {
-						if (field.getName().equals("serialVersionUID")) {
+						fieldName = field.getName();
+						if (fieldName.equals("serialVersionUID")) {
 							continue;
 						}
-						fieldName = field.getName();
 						getMethodName.delete(0, getMethodName.length());
 						getMethodName.append("get");
 						getMethodName.append(toFirstLetterUpperCase(fieldName));
@@ -122,10 +123,15 @@ public class IndexCreater {
 						if (obj == null) {
 							obj = "";
 						}
-						doc.add(new Field(fieldName, (String) obj,
+						if(fieldName.equals("name")){
+							doc.add(new Field(fieldName, (String) obj,
 								Field.Store.YES, Field.Index.ANALYZED));
+						} else {
+							doc.add(new Field(fieldName, (String) obj,
+									Field.Store.YES, Field.Index.NOT_ANALYZED));
+						}
+						
 					}
-
 					indexWriter.addDocument(doc);
 				}
 				productList.clear();
@@ -156,8 +162,10 @@ public class IndexCreater {
 		}
 	}
 
-	public static void main(String[] args) throws Exception {
-		IndexCreater indexCreater = new IndexCreater();
-		indexCreater.createIndexForProduct();
-	}
+//	public static void main(String[] args) throws Exception {
+//		System.out.println(new Date());
+//		IndexCreater indexCreater = new IndexCreater();
+//		indexCreater.createIndexForProduct();
+//		System.out.println(new Date());
+//	}
 }

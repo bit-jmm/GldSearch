@@ -19,6 +19,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 import org.bit.myscore.GldScoreQuery;
+import org.bit.wordseg.IKWordSeg;
 import org.wltea.analyzer.lucene.IKAnalyzer;
 
 
@@ -104,6 +105,9 @@ public class LuceneDemo {
             // 设定具体的搜索词
             Query query = parser.parse(keyword);
             System.out.println(query.toString());
+            
+            // 对keyword分词
+            IKWordSeg ikWordSeg = new IKWordSeg();
             
             GldScoreQuery gldScoreQuery = new GldScoreQuery(query, keyword);
             
